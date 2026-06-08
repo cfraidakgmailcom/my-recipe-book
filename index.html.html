@@ -44,701 +44,196 @@ body::before{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events:none;z-index:0;
 }
-
 .screen{display:none;position:relative;z-index:1;min-height:100vh;}
 .screen.active{display:block;}
 
-/* ═══════════════════════════════
-   COVER / HOME SCREEN
-═══════════════════════════════ */
+/* COVER */
 #home{padding-bottom:100px;}
-
 .book-cover{
   margin:24px 20px 0;
   background:var(--linen-dark);
   border-radius:4px 12px 12px 4px;
   padding:40px 28px 36px;
-  position:relative;
-  overflow:hidden;
-  box-shadow:
-    -6px 0 0 var(--linen-darker),
-    -10px 4px 20px rgba(0,0,0,0.18),
-    4px 4px 24px var(--shadow-deep),
-    inset 0 0 80px rgba(0,0,0,0.04);
+  position:relative;overflow:hidden;
+  box-shadow:-6px 0 0 var(--linen-darker),-10px 4px 20px rgba(0,0,0,0.18),4px 4px 24px var(--shadow-deep),inset 0 0 80px rgba(0,0,0,0.04);
   border-left:6px solid var(--linen-darker);
   text-align:center;
 }
-.book-cover::before{
-  content:'';
-  position:absolute;inset:8px;
-  border:1.5px solid rgba(180,150,100,0.3);
-  border-radius:0 8px 8px 0;
-  pointer-events:none;
-}
-.cover-food-row{
-  display:flex;justify-content:center;gap:8px;
-  font-size:1.8rem;margin-bottom:16px;
-  opacity:0.85;
-}
-.cover-title{
-  font-family:'Dancing Script',cursive;
-  font-size:clamp(3.2rem,12vw,5rem);
-  color:var(--rose);
-  line-height:1;
-  text-shadow:2px 2px 4px rgba(0,0,0,0.08);
-  margin-bottom:6px;
-}
-.cover-subtitle{
-  font-family:'EB Garamond',serif;
-  font-size:0.78rem;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  margin-bottom:20px;
-}
-.cover-divider{
-  display:flex;align-items:center;gap:10px;
-  margin:0 auto 20px;max-width:200px;
-}
-.cover-divider::before,.cover-divider::after{
-  content:'';flex:1;
-  height:1px;background:var(--linen-darker);
-}
+.book-cover::before{content:'';position:absolute;inset:8px;border:1.5px solid rgba(180,150,100,0.3);border-radius:0 8px 8px 0;pointer-events:none;}
+.cover-food-row{display:flex;justify-content:center;gap:8px;font-size:1.8rem;margin-bottom:16px;opacity:0.85;}
+.cover-title{font-family:'Dancing Script',cursive;font-size:clamp(3.2rem,12vw,5rem);color:var(--rose);line-height:1;text-shadow:2px 2px 4px rgba(0,0,0,0.08);margin-bottom:6px;}
+.cover-subtitle{font-family:'EB Garamond',serif;font-size:0.78rem;letter-spacing:4px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:20px;}
+.cover-divider{display:flex;align-items:center;gap:10px;margin:0 auto 20px;max-width:200px;}
+.cover-divider::before,.cover-divider::after{content:'';flex:1;height:1px;background:var(--linen-darker);}
 .cover-divider span{font-size:0.7rem;color:var(--ink-faint);}
-.cover-food-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:8px;margin-bottom:0;
-}
-.cover-food-item{
-  font-size:2.2rem;padding:8px;
-  background:rgba(255,255,255,0.3);
-  border-radius:8px;
-}
+.cover-food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.cover-food-item{font-size:2.2rem;padding:8px;background:rgba(255,255,255,0.3);border-radius:8px;}
 
-/* Controls */
+/* CONTROLS */
 .home-controls{padding:20px 20px 0;}
 .search-wrap{position:relative;margin-bottom:12px;}
-.search-wrap input{
-  width:100%;
-  padding:11px 16px 11px 38px;
-  border-radius:6px;
-  border:1.5px solid var(--linen-darker);
-  background:var(--paper);
-  font-family:'EB Garamond',serif;
-  font-size:1rem;color:var(--ink);
-  outline:none;transition:border 0.2s;
-  box-shadow:0 1px 6px var(--shadow);
-}
+.search-wrap input{width:100%;padding:11px 16px 11px 38px;border-radius:6px;border:1.5px solid var(--linen-darker);background:var(--paper);font-family:'EB Garamond',serif;font-size:1rem;color:var(--ink);outline:none;transition:border 0.2s;box-shadow:0 1px 6px var(--shadow);}
 .search-wrap input:focus{border-color:var(--rose-light);}
-.search-wrap::before{
-  content:'⌕';
-  position:absolute;left:12px;top:50%;
-  transform:translateY(-50%);
-  color:var(--ink-faint);font-size:1.1rem;
-  pointer-events:none;
-}
-.cat-bar{
-  display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;
-  padding-bottom:2px;
-}
+.search-wrap::before{content:'⌕';position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-faint);font-size:1.1rem;pointer-events:none;}
+.cat-bar{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
 .cat-bar::-webkit-scrollbar{display:none;}
-.cat-btn{
-  flex-shrink:0;
-  padding:6px 14px;
-  border-radius:30px;
-  border:1.5px solid var(--linen-darker);
-  background:var(--paper);
-  font-family:'EB Garamond',serif;
-  font-size:0.9rem;color:var(--ink-mid);
-  cursor:pointer;transition:all 0.18s;
-  white-space:nowrap;
-}
+.cat-btn{flex-shrink:0;padding:6px 14px;border-radius:30px;border:1.5px solid var(--linen-darker);background:var(--paper);font-family:'EB Garamond',serif;font-size:0.9rem;color:var(--ink-mid);cursor:pointer;transition:all 0.18s;white-space:nowrap;}
 .cat-btn.active{background:var(--rose);border-color:var(--rose);color:white;}
 .cat-btn:hover:not(.active){border-color:var(--rose-light);color:var(--rose-dark);}
 
-/* View toggles */
-.view-toggle{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px 10px;
-}
-.view-label{
-  font-family:'EB Garamond',serif;
-  font-size:0.8rem;letter-spacing:2px;
-  text-transform:uppercase;color:var(--ink-faint);
-}
+.view-toggle{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 10px;}
+.view-label{font-family:'EB Garamond',serif;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--ink-faint);}
 .view-btns{display:flex;gap:6px;}
-.view-btn{
-  padding:5px 12px;
-  border-radius:4px;
-  border:1px solid var(--linen-darker);
-  background:var(--paper);
-  font-size:0.8rem;color:var(--ink-soft);
-  cursor:pointer;transition:all 0.15s;
-  font-family:'EB Garamond',serif;
-}
+.view-btn{padding:5px 12px;border-radius:4px;border:1px solid var(--linen-darker);background:var(--paper);font-size:0.8rem;color:var(--ink-soft);cursor:pointer;transition:all 0.15s;font-family:'EB Garamond',serif;}
 .view-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
 
-/* Card grid */
-.recipe-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  padding:0 16px;
-}
+/* GRID */
+.recipe-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 16px;}
 @media(min-width:600px){.recipe-grid{grid-template-columns:repeat(3,1fr);}}
 @media(min-width:900px){.recipe-grid{grid-template-columns:repeat(4,1fr);padding:0 24px;}}
-
-.recipe-card{
-  background:var(--paper);
-  border-radius:4px 10px 10px 4px;
-  border-left:4px solid var(--rose-light);
-  padding:14px 14px 12px;
-  cursor:pointer;
-  box-shadow:2px 2px 10px var(--shadow),0 1px 3px var(--shadow);
-  transition:transform 0.2s,box-shadow 0.2s;
-  position:relative;
-}
+.recipe-card{background:var(--paper);border-radius:4px 10px 10px 4px;border-left:4px solid var(--rose-light);padding:14px 14px 12px;cursor:pointer;box-shadow:2px 2px 10px var(--shadow),0 1px 3px var(--shadow);transition:transform 0.2s,box-shadow 0.2s;position:relative;}
 .recipe-card:hover{transform:translateY(-2px) rotate(0.3deg);box-shadow:4px 6px 18px var(--shadow-deep);}
 .recipe-card:active{transform:scale(0.97);}
 .rc-emoji{font-size:1.6rem;margin-bottom:8px;display:block;}
-.rc-name{
-  font-family:'Dancing Script',cursive;
-  font-size:1.1rem;font-weight:600;
-  color:var(--ink);line-height:1.2;
-  margin-bottom:6px;
-}
+.rc-name{font-family:'Dancing Script',cursive;font-size:1.1rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:6px;}
 .rc-cats{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;}
-.rc-cat{
-  font-family:'Lato',sans-serif;
-  font-size:0.6rem;letter-spacing:1px;
-  text-transform:uppercase;
-  padding:2px 7px;border-radius:3px;
-}
-.rc-meta{
-  font-size:0.78rem;color:var(--ink-faint);
-  font-style:italic;
-}
-/* border accent per primary cat */
-.bc-breakfast{border-left-color:#E8C870;}
-.bc-lunch{border-left-color:#90BA88;}
-.bc-dinner{border-left-color:#A888C8;}
-.bc-snacks{border-left-color:#E89870;}
-.bc-salads{border-left-color:#90C878;}
-.bc-desserts{border-left-color:#E8A0B8;}
-.bc-drinks{border-left-color:#80B8D0;}
-.bc-other{border-left-color:var(--linen-darker);}
+.rc-cat{font-family:'Lato',sans-serif;font-size:0.6rem;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:3px;}
+.rc-meta{font-size:0.78rem;color:var(--ink-faint);font-style:italic;}
+.bc-breakfast{border-left-color:#E8C870;}.bc-lunch{border-left-color:#90BA88;}.bc-dinner{border-left-color:#A888C8;}.bc-snacks{border-left-color:#E89870;}.bc-salads{border-left-color:#90C878;}.bc-desserts{border-left-color:#E8A0B8;}.bc-drinks{border-left-color:#80B8D0;}.bc-other{border-left-color:var(--linen-darker);}
 
-/* ═══════════════════════════════
-   BOOK VIEW — flippable pages
-═══════════════════════════════ */
+/* BOOK VIEW */
 #bookview{background:var(--linen);}
-.book-nav{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px;
-  background:var(--linen);
-  border-bottom:1px solid var(--linen-darker);
-  position:sticky;top:0;z-index:20;
-}
-.book-nav-title{
-  font-family:'Dancing Script',cursive;
-  font-size:1.4rem;color:var(--ink);
-}
-.bnav-btn{
-  padding:7px 14px;border-radius:4px;
-  border:1px solid var(--linen-darker);
-  background:var(--paper);
-  font-family:'EB Garamond',serif;
-  font-size:0.9rem;color:var(--ink-mid);
-  cursor:pointer;transition:all 0.15s;
-}
+.book-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--linen);border-bottom:1px solid var(--linen-darker);position:sticky;top:0;z-index:20;}
+.book-nav-title{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--ink);}
+.bnav-btn{padding:7px 14px;border-radius:4px;border:1px solid var(--linen-darker);background:var(--paper);font-family:'EB Garamond',serif;font-size:0.9rem;color:var(--ink-mid);cursor:pointer;transition:all 0.15s;}
 .bnav-btn:hover{background:var(--linen-dark);}
-
-.book-page-container{
-  padding:20px 16px 40px;
-  display:flex;flex-direction:column;align-items:center;
-  gap:0;
-}
-
-/* The actual page — looks like image 3 */
-.book-page{
-  width:100%;max-width:520px;
-  background:var(--paper);
-  border-radius:2px;
-  box-shadow:
-    3px 3px 0 var(--paper-shadow),
-    6px 6px 0 var(--linen-dark),
-    8px 8px 20px rgba(0,0,0,0.15);
-  padding:32px 28px 36px;
-  position:relative;
-  margin-bottom:32px;
-  /* paper lines suggestion */
-}
-.book-page::after{
-  content:'';
-  position:absolute;
-  top:0;bottom:0;left:36px;
-  width:1px;
-  background:rgba(196,146,58,0.15);
-}
-.page-top-label{
-  font-family:'Caveat',cursive;
-  font-size:0.85rem;
-  letter-spacing:3px;
-  color:var(--ink-faint);
-  text-align:center;
-  margin-bottom:4px;
-}
-.page-recipe-title{
-  font-family:'Dancing Script',cursive;
-  font-size:clamp(2rem,8vw,3rem);
-  font-weight:700;
-  color:var(--ink);
-  line-height:1.1;
-  text-align:center;
-  margin-bottom:4px;
-}
-.page-recipe-sub{
-  font-family:'Caveat',cursive;
-  font-size:0.95rem;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  text-align:center;
-  margin-bottom:16px;
-}
-.page-divider{
-  display:flex;align-items:center;gap:8px;
-  margin-bottom:16px;
-}
-.page-divider::before,.page-divider::after{
-  content:'';flex:1;
-  height:1px;background:var(--linen-darker);
-}
+.book-page-container{padding:20px 16px 40px;display:flex;flex-direction:column;align-items:center;gap:0;}
+.book-page{width:100%;max-width:520px;background:var(--paper);border-radius:2px;box-shadow:3px 3px 0 var(--paper-shadow),6px 6px 0 var(--linen-dark),8px 8px 20px rgba(0,0,0,0.15);padding:32px 28px 36px;position:relative;margin-bottom:32px;}
+.book-page::after{content:'';position:absolute;top:0;bottom:0;left:36px;width:1px;background:rgba(196,146,58,0.15);}
+.page-top-label{font-family:'Caveat',cursive;font-size:0.85rem;letter-spacing:3px;color:var(--ink-faint);text-align:center;margin-bottom:4px;}
+.page-recipe-title{font-family:'Dancing Script',cursive;font-size:clamp(2rem,8vw,3rem);font-weight:700;color:var(--ink);line-height:1.1;text-align:center;margin-bottom:4px;}
+.page-recipe-sub{font-family:'Caveat',cursive;font-size:0.95rem;letter-spacing:3px;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-bottom:16px;}
+.page-divider{display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.page-divider::before,.page-divider::after{content:'';flex:1;height:1px;background:var(--linen-darker);}
 .page-divider span{font-size:0.75rem;color:var(--rose-light);}
-
 .page-cats{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;justify-content:center;}
-.page-cat{
-  font-family:'Caveat',cursive;
-  font-size:0.85rem;
-  padding:2px 10px;border-radius:3px;
-  color:var(--ink-soft);
-  background:var(--linen-dark);
-}
-
-.page-meta-row{
-  display:flex;justify-content:center;gap:20px;
-  margin-bottom:20px;
-  font-family:'Caveat',cursive;
-  font-size:0.9rem;color:var(--ink-soft);
-}
-
-/* Two-col layout like the watercolour journal */
-.page-body{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:0;
-}
-@media(min-width:440px){
-  .page-body{grid-template-columns:1fr 1fr;gap:0 20px;}
-}
-
-.page-section-title{
-  font-family:'Caveat',cursive;
-  font-size:0.78rem;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--rose);
-  margin-bottom:8px;
-  margin-top:16px;
-  padding-bottom:4px;
-  border-bottom:1px solid var(--linen-darker);
-}
+.page-cat{font-family:'Caveat',cursive;font-size:0.85rem;padding:2px 10px;border-radius:3px;color:var(--ink-soft);background:var(--linen-dark);}
+.page-meta-row{display:flex;justify-content:center;gap:20px;margin-bottom:20px;font-family:'Caveat',cursive;font-size:0.9rem;color:var(--ink-soft);}
+.page-body{display:grid;grid-template-columns:1fr;gap:0;}
+@media(min-width:440px){.page-body{grid-template-columns:1fr 1fr;gap:0 20px;}}
+.page-section-title{font-family:'Caveat',cursive;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:8px;margin-top:16px;padding-bottom:4px;border-bottom:1px solid var(--linen-darker);}
 .page-ing-list{list-style:none;margin-bottom:4px;}
-.page-ing-list li{
-  font-family:'Caveat',cursive;
-  font-size:1rem;
-  color:var(--ink);
-  padding:3px 0;
-  display:flex;gap:8px;align-items:flex-start;
-  border-bottom:1px dashed rgba(180,160,130,0.2);
-  line-height:1.4;
-  cursor:pointer;transition:opacity 0.15s;
-}
+.page-ing-list li{font-family:'Caveat',cursive;font-size:1rem;color:var(--ink);padding:3px 0;display:flex;gap:8px;align-items:flex-start;border-bottom:1px dashed rgba(180,160,130,0.2);line-height:1.4;cursor:pointer;transition:opacity 0.15s;}
 .page-ing-list li.checked{opacity:0.35;text-decoration:line-through;}
 .ing-dash{color:var(--rose-light);flex-shrink:0;margin-top:1px;}
-
 .page-steps-list{list-style:none;}
-.page-steps-list li{
-  font-family:'Caveat',cursive;
-  font-size:1rem;
-  color:var(--ink);
-  padding:5px 0;
-  border-bottom:1px dashed rgba(180,160,130,0.2);
-  line-height:1.5;
-  display:flex;gap:8px;
-}
-.step-num-hand{
-  font-family:'Dancing Script',cursive;
-  font-size:1.1rem;
-  color:var(--rose-light);
-  flex-shrink:0;min-width:18px;
-}
-
-.page-notes{
-  font-family:'Caveat',cursive;
-  font-size:0.95rem;
-  color:var(--ink-mid);
-  line-height:1.7;
-  background:var(--gold-pale);
-  border-radius:4px;
-  padding:12px 14px;
-  margin-top:16px;
-  border-left:3px solid var(--gold-light);
-}
-
-.page-source{
-  margin-top:16px;
-  font-family:'Caveat',cursive;
-  font-size:0.88rem;
-  color:var(--ink-faint);
-}
+.page-steps-list li{font-family:'Caveat',cursive;font-size:1rem;color:var(--ink);padding:5px 0;border-bottom:1px dashed rgba(180,160,130,0.2);line-height:1.5;display:flex;gap:8px;}
+.step-num-hand{font-family:'Dancing Script',cursive;font-size:1.1rem;color:var(--rose-light);flex-shrink:0;min-width:18px;}
+.page-notes{font-family:'Caveat',cursive;font-size:0.95rem;color:var(--ink-mid);line-height:1.7;background:var(--gold-pale);border-radius:4px;padding:12px 14px;margin-top:16px;border-left:3px solid var(--gold-light);}
+.page-source{margin-top:16px;font-family:'Caveat',cursive;font-size:0.88rem;color:var(--ink-faint);}
 .page-source a{color:var(--rose);text-decoration:none;}
 .page-source a:hover{text-decoration:underline;}
-
-.page-macros-btn{
-  margin-top:20px;width:100%;
-  padding:10px;border-radius:4px;
-  border:1px dashed var(--gold-light);
-  background:var(--gold-pale);
-  font-family:'Caveat',cursive;
-  font-size:0.95rem;color:var(--gold);
-  cursor:pointer;transition:all 0.2s;
-}
+.page-macros-btn{margin-top:20px;width:100%;padding:10px;border-radius:4px;border:1px dashed var(--gold-light);background:var(--gold-pale);font-family:'Caveat',cursive;font-size:0.95rem;color:var(--gold);cursor:pointer;transition:all 0.2s;}
 .page-macros-btn:hover{background:var(--gold-light);}
-.macros-row{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:6px;margin-top:10px;
-}
-.macro-box{
-  background:var(--paper);border:1px solid var(--linen-darker);
-  border-radius:4px;padding:8px 4px;text-align:center;
-}
-.macro-box .mv{
-  font-family:'Dancing Script',cursive;
-  font-size:1.2rem;color:var(--ink);display:block;
-}
-.macro-box .ml{
-  font-size:0.6rem;text-transform:uppercase;
-  letter-spacing:1px;color:var(--ink-faint);display:block;
-}
-.macro-note{
-  font-family:'Caveat',cursive;font-size:0.75rem;
-  color:var(--ink-faint);text-align:center;
-  margin-top:6px;font-style:italic;
-}
-
-.page-actions{
-  display:flex;gap:8px;margin-top:16px;
-}
-.page-act-btn{
-  flex:1;padding:10px;
-  border-radius:4px;border:1px solid var(--linen-darker);
-  background:var(--paper);
-  font-family:'Caveat',cursive;font-size:0.9rem;
-  color:var(--ink-soft);cursor:pointer;transition:all 0.15s;
-}
+.macros-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px;}
+.macro-box{background:var(--paper);border:1px solid var(--linen-darker);border-radius:4px;padding:8px 4px;text-align:center;}
+.macro-box .mv{font-family:'Dancing Script',cursive;font-size:1.2rem;color:var(--ink);display:block;}
+.macro-box .ml{font-size:0.6rem;text-transform:uppercase;letter-spacing:1px;color:var(--ink-faint);display:block;}
+.macro-note{font-family:'Caveat',cursive;font-size:0.75rem;color:var(--ink-faint);text-align:center;margin-top:6px;font-style:italic;}
+.page-actions{display:flex;gap:8px;margin-top:16px;}
+.page-act-btn{flex:1;padding:10px;border-radius:4px;border:1px solid var(--linen-darker);background:var(--paper);font-family:'Caveat',cursive;font-size:0.9rem;color:var(--ink-soft);cursor:pointer;transition:all 0.15s;}
 .page-act-btn:hover{background:var(--linen-dark);}
 .page-act-btn.danger{color:#A05050;border-color:#E0C0C0;}
 .page-act-btn.danger:hover{background:#FFF0F0;}
-
-.page-number{
-  text-align:center;
-  font-family:'Caveat',cursive;
-  font-size:0.85rem;color:var(--ink-faint);
-  margin-top:-20px;margin-bottom:8px;
-}
-
-/* Page navigation */
-.book-pagination{
-  display:flex;align-items:center;justify-content:center;
-  gap:12px;padding:8px 20px 24px;
-  position:sticky;bottom:0;
-  background:linear-gradient(transparent,var(--linen) 40%);
-  z-index:10;
-}
-.page-nav-btn{
-  padding:8px 20px;border-radius:4px;
-  border:1.5px solid var(--linen-darker);
-  background:var(--paper);
-  font-family:'EB Garamond',serif;
-  font-size:0.95rem;color:var(--ink-mid);
-  cursor:pointer;transition:all 0.18s;
-  box-shadow:0 2px 6px var(--shadow);
-}
+.page-number{text-align:center;font-family:'Caveat',cursive;font-size:0.85rem;color:var(--ink-faint);margin-top:-20px;margin-bottom:8px;}
+.book-pagination{display:flex;align-items:center;justify-content:center;gap:12px;padding:8px 20px 24px;position:sticky;bottom:0;background:linear-gradient(transparent,var(--linen) 40%);z-index:10;}
+.page-nav-btn{padding:8px 20px;border-radius:4px;border:1.5px solid var(--linen-darker);background:var(--paper);font-family:'EB Garamond',serif;font-size:0.95rem;color:var(--ink-mid);cursor:pointer;transition:all 0.18s;box-shadow:0 2px 6px var(--shadow);}
 .page-nav-btn:hover{background:var(--rose-pale);border-color:var(--rose-light);}
 .page-nav-btn:disabled{opacity:0.35;cursor:not-allowed;}
-.page-indicator{
-  font-family:'Dancing Script',cursive;
-  font-size:1.1rem;color:var(--ink-soft);
-  min-width:80px;text-align:center;
-}
+.page-indicator{font-family:'Dancing Script',cursive;font-size:1.1rem;color:var(--ink-soft);min-width:80px;text-align:center;}
 
-/* ═══════════════════════════════
-   ADD/EDIT SCREEN
-═══════════════════════════════ */
+/* ADD/EDIT */
 #add{background:var(--linen);padding-bottom:40px;}
-.screen-nav{
-  display:flex;align-items:center;gap:12px;
-  padding:14px 20px;
-  background:var(--linen);
-  border-bottom:1px solid var(--linen-darker);
-  position:sticky;top:0;z-index:20;
-}
-.nav-back{
-  padding:7px 14px;border-radius:4px;
-  border:1px solid var(--linen-darker);
-  background:var(--paper);
-  font-family:'EB Garamond',serif;
-  font-size:0.9rem;color:var(--ink-mid);
-  cursor:pointer;transition:all 0.15s;
-}
+.screen-nav{display:flex;align-items:center;gap:12px;padding:14px 20px;background:var(--linen);border-bottom:1px solid var(--linen-darker);position:sticky;top:0;z-index:20;}
+.nav-back{padding:7px 14px;border-radius:4px;border:1px solid var(--linen-darker);background:var(--paper);font-family:'EB Garamond',serif;font-size:0.9rem;color:var(--ink-mid);cursor:pointer;transition:all 0.15s;}
 .nav-back:hover{background:var(--linen-dark);}
-.nav-title{
-  font-family:'Dancing Script',cursive;
-  font-size:1.5rem;color:var(--ink);
-}
-
-.paste-zone{
-  margin:20px 20px 0;
-  border:2px dashed var(--rose-light);
-  border-radius:8px;
-  background:var(--rose-pale);
-  padding:18px;
-}
-.paste-zone h3{
-  font-family:'Dancing Script',cursive;
-  font-size:1.3rem;color:var(--rose-dark);
-  margin-bottom:6px;
-}
-.paste-zone p{
-  font-size:0.9rem;color:var(--ink-soft);
-  line-height:1.6;margin-bottom:10px;
-}
-.paste-zone textarea{
-  width:100%;min-height:100px;
-  border:1.5px solid var(--rose-light);
-  border-radius:6px;
-  background:var(--paper);
-  font-family:'EB Garamond',serif;
-  font-size:1rem;color:var(--ink);
-  padding:11px 14px;resize:vertical;
-  outline:none;line-height:1.6;
-  transition:border 0.2s;
-}
+.nav-title{font-family:'Dancing Script',cursive;font-size:1.5rem;color:var(--ink);}
+.paste-zone{margin:20px 20px 0;border:2px dashed var(--rose-light);border-radius:8px;background:var(--rose-pale);padding:18px;}
+.paste-zone h3{font-family:'Dancing Script',cursive;font-size:1.3rem;color:var(--rose-dark);margin-bottom:6px;}
+.paste-zone p{font-size:0.9rem;color:var(--ink-soft);line-height:1.6;margin-bottom:10px;}
+.paste-zone textarea{width:100%;min-height:100px;border:1.5px solid var(--rose-light);border-radius:6px;background:var(--paper);font-family:'EB Garamond',serif;font-size:1rem;color:var(--ink);padding:11px 14px;resize:vertical;outline:none;line-height:1.6;transition:border 0.2s;}
 .paste-zone textarea:focus{border-color:var(--rose);}
-.parse-btn{
-  width:100%;margin-top:10px;padding:11px;
-  border-radius:6px;border:none;
-  background:var(--rose);color:white;
-  font-family:'Dancing Script',cursive;
-  font-size:1.1rem;cursor:pointer;
-  transition:all 0.2s;
-  box-shadow:0 2px 10px rgba(200,126,138,0.3);
-}
+.parse-btn{width:100%;margin-top:10px;padding:11px;border-radius:6px;border:none;background:var(--rose);color:white;font-family:'Dancing Script',cursive;font-size:1.1rem;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 10px rgba(200,126,138,0.3);}
 .parse-btn:hover{background:var(--rose-dark);}
 .parse-btn:disabled{opacity:0.6;cursor:not-allowed;}
-
-.or-divider{
-  text-align:center;padding:14px 0 0;
-  font-family:'Caveat',cursive;
-  font-size:1rem;color:var(--ink-faint);
-  display:flex;align-items:center;gap:10px;
-}
-.or-divider::before,.or-divider::after{
-  content:'';flex:1;height:1px;background:var(--linen-darker);
-}
-
+.or-divider{text-align:center;padding:14px 0 0;font-family:'Caveat',cursive;font-size:1rem;color:var(--ink-faint);display:flex;align-items:center;gap:10px;}
+.or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:var(--linen-darker);}
 .form-wrap{padding:14px 20px 0;}
 .field{margin-bottom:14px;}
-.field label{
-  display:block;
-  font-family:'Caveat',cursive;
-  font-size:0.8rem;letter-spacing:2px;
-  text-transform:uppercase;color:var(--ink-soft);
-  margin-bottom:5px;
-}
-.field input,.field textarea{
-  width:100%;padding:10px 14px;
-  border-radius:5px;
-  border:1.5px solid var(--linen-darker);
-  background:var(--paper);
-  font-family:'EB Garamond',serif;
-  font-size:1rem;color:var(--ink);
-  outline:none;transition:border 0.2s;
-  box-shadow:inset 0 1px 3px rgba(0,0,0,0.03);
-}
+.field label{display:block;font-family:'Caveat',cursive;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px;}
+.field input,.field textarea{width:100%;padding:10px 14px;border-radius:5px;border:1.5px solid var(--linen-darker);background:var(--paper);font-family:'EB Garamond',serif;font-size:1rem;color:var(--ink);outline:none;transition:border 0.2s;box-shadow:inset 0 1px 3px rgba(0,0,0,0.03);}
 .field input:focus,.field textarea:focus{border-color:var(--rose-light);}
 .field textarea{min-height:110px;resize:vertical;line-height:1.7;}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-
-.cat-check-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:7px;
-}
+.cat-check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;}
 @media(min-width:400px){.cat-check-grid{grid-template-columns:repeat(3,1fr);}}
-.cat-check-item{
-  display:flex;align-items:center;gap:8px;
-  padding:8px 11px;border-radius:5px;
-  border:1.5px solid var(--linen-darker);
-  background:var(--paper);cursor:pointer;
-  transition:all 0.15s;user-select:none;
-}
+.cat-check-item{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:5px;border:1.5px solid var(--linen-darker);background:var(--paper);cursor:pointer;transition:all 0.15s;user-select:none;}
 .cat-check-item.selected{border-color:var(--rose);background:var(--rose-pale);}
 .cat-check-item input[type="checkbox"]{display:none;}
-.chk-box{
-  width:15px;height:15px;border-radius:3px;
-  border:1.5px solid var(--linen-darker);
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.6rem;color:white;flex-shrink:0;
-  transition:all 0.15s;
-}
+.chk-box{width:15px;height:15px;border-radius:3px;border:1.5px solid var(--linen-darker);display:flex;align-items:center;justify-content:center;font-size:0.6rem;color:white;flex-shrink:0;transition:all 0.15s;}
 .cat-check-item.selected .chk-box{background:var(--rose);border-color:var(--rose);}
 .chk-label{font-family:'EB Garamond',serif;font-size:0.9rem;color:var(--ink-mid);}
-
-.save-btn{
-  width:100%;margin-top:18px;padding:14px;
-  border-radius:6px;border:none;
-  background:var(--sage);color:white;
-  font-family:'Dancing Script',cursive;
-  font-size:1.2rem;cursor:pointer;
-  box-shadow:0 3px 14px rgba(122,154,114,0.35);
-  transition:all 0.2s;
-}
+.save-btn{width:100%;margin-top:18px;padding:14px;border-radius:6px;border:none;background:var(--sage);color:white;font-family:'Dancing Script',cursive;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 14px rgba(122,154,114,0.35);transition:all 0.2s;}
 .save-btn:hover{background:#628A5A;transform:translateY(-1px);}
 
-/* ═══════════════════════════════
-   CATEGORY COLORS
-═══════════════════════════════ */
-.cc-breakfast{background:#FEF4D8;color:#9A7818;}
-.cc-lunch{background:#E4F0E0;color:#3A7030;}
-.cc-dinner{background:#EAE4F4;color:#5A4090;}
-.cc-snacks{background:#FEE8DC;color:#9A5020;}
-.cc-salads{background:#E0F4D8;color:#3A7820;}
-.cc-desserts{background:#FAE0EC;color:#983060;}
-.cc-drinks{background:#DCF0F6;color:#1A6888;}
-.cc-other{background:var(--linen-dark);color:var(--ink-soft);}
+/* CATEGORY COLORS */
+.cc-breakfast{background:#FEF4D8;color:#9A7818;}.cc-lunch{background:#E4F0E0;color:#3A7030;}.cc-dinner{background:#EAE4F4;color:#5A4090;}.cc-snacks{background:#FEE8DC;color:#9A5020;}.cc-salads{background:#E0F4D8;color:#3A7820;}.cc-desserts{background:#FAE0EC;color:#983060;}.cc-drinks{background:#DCF0F6;color:#1A6888;}.cc-other{background:var(--linen-dark);color:var(--ink-soft);}
 
-/* ═══════════════════════════════
-   TOAST & PARSING OVERLAY
-═══════════════════════════════ */
-.toast{
-  position:fixed;bottom:80px;left:50%;
-  transform:translateX(-50%) translateY(16px);
-  background:var(--ink);color:var(--paper);
-  padding:9px 22px;border-radius:40px;
-  font-family:'EB Garamond',serif;font-size:0.95rem;
-  opacity:0;transition:all 0.28s;
-  pointer-events:none;z-index:400;
-  white-space:nowrap;
-  box-shadow:0 4px 20px rgba(0,0,0,0.25);
-}
+/* TOAST & OVERLAY */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--ink);color:var(--paper);padding:9px 22px;border-radius:40px;font-family:'EB Garamond',serif;font-size:0.95rem;opacity:0;transition:all 0.28s;pointer-events:none;z-index:400;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.25);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-.overlay{
-  display:none;position:fixed;inset:0;z-index:500;
-  background:rgba(42,31,14,0.5);
-  align-items:center;justify-content:center;
-  backdrop-filter:blur(4px);
-}
+.overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(42,31,14,0.5);align-items:center;justify-content:center;backdrop-filter:blur(4px);}
 .overlay.show{display:flex;}
-.overlay-card{
-  background:var(--paper);border-radius:10px;
-  padding:32px 40px;text-align:center;
-  box-shadow:0 20px 60px rgba(0,0,0,0.3);
-}
-.overlay-spinner{
-  font-size:2rem;margin-bottom:14px;
-  animation:spin 2s linear infinite;display:inline-block;
-}
+.overlay-card{background:var(--paper);border-radius:10px;padding:32px 40px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);}
+.overlay-spinner{font-size:2rem;margin-bottom:14px;animation:spin 2s linear infinite;display:inline-block;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.overlay-card p{
-  font-family:'Dancing Script',cursive;
-  font-size:1.3rem;color:var(--ink-mid);
-}
+.overlay-card p{font-family:'Dancing Script',cursive;font-size:1.3rem;color:var(--ink-mid);}
 
 /* FAB */
-.fab{
-  position:fixed;bottom:26px;right:22px;
-  width:54px;height:54px;border-radius:50%;
-  background:var(--rose);color:white;
-  font-size:1.5rem;border:none;cursor:pointer;
-  box-shadow:0 4px 18px rgba(200,126,138,0.5);
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s;z-index:100;
-}
+.fab{position:fixed;bottom:26px;right:22px;width:54px;height:54px;border-radius:50%;background:var(--rose);color:white;font-size:1.5rem;border:none;cursor:pointer;box-shadow:0 4px 18px rgba(200,126,138,0.5);display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:100;}
 .fab:hover{background:var(--rose-dark);transform:scale(1.06);}
 .fab:active{transform:scale(0.94);}
 
-/* Empty state */
-.empty-state{
-  grid-column:1/-1;text-align:center;
-  padding:60px 30px;
-}
+/* EMPTY */
+.empty-state{grid-column:1/-1;text-align:center;padding:60px 30px;}
 .empty-state .ei{font-size:3rem;margin-bottom:14px;opacity:0.5;}
-.empty-state h3{
-  font-family:'Dancing Script',cursive;
-  font-size:1.8rem;color:var(--ink-mid);margin-bottom:8px;
-}
+.empty-state h3{font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--ink-mid);margin-bottom:8px;}
 .empty-state p{font-size:0.95rem;color:var(--ink-soft);line-height:1.7;}
-
-.book-empty{
-  text-align:center;padding:60px 20px;
-}
-.book-empty h3{
-  font-family:'Dancing Script',cursive;
-  font-size:2rem;color:var(--ink-mid);margin-bottom:10px;
-}
+.book-empty{text-align:center;padding:60px 20px;}
+.book-empty h3{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--ink-mid);margin-bottom:10px;}
 .book-empty p{font-size:1rem;color:var(--ink-soft);}
 
-/* TABLE OF CONTENTS */
+/* TOC */
 .toc-body{padding:4px 0;}
-.toc-cat-heading{
-  font-family:'Dancing Script',cursive;
-  font-size:1.3rem;color:var(--rose);
-  margin:16px 0 6px;
-  padding-bottom:4px;
-  border-bottom:1px solid var(--linen-darker);
-}
-.toc-entry{
-  display:flex;align-items:baseline;gap:4px;
-  padding:5px 0;
-  cursor:pointer;
-  border-bottom:1px dashed rgba(180,160,130,0.2);
-  transition:opacity 0.15s;
-}
+.toc-cat-heading{font-family:'Dancing Script',cursive;font-size:1.3rem;color:var(--rose);margin:16px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--linen-darker);}
+.toc-entry{display:flex;align-items:baseline;gap:4px;padding:5px 0;cursor:pointer;border-bottom:1px dashed rgba(180,160,130,0.2);transition:opacity 0.15s;}
 .toc-entry:hover{opacity:0.7;}
-.toc-name{
-  font-family:'Caveat',cursive;
-  font-size:1.05rem;color:var(--ink);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  max-width:70%;
-}
-.toc-dots{
-  flex:1;
-  border-bottom:1px dotted var(--ink-faint);
-  margin:0 6px;
-  margin-bottom:4px;
-}
-.toc-page{
-  font-family:'Dancing Script',cursive;
-  font-size:1rem;color:var(--ink-soft);
-  flex-shrink:0;
-}
+.toc-name{font-family:'Caveat',cursive;font-size:1.05rem;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70%;}
+.toc-dots{flex:1;border-bottom:1px dotted var(--ink-faint);margin:0 6px;margin-bottom:4px;}
+.toc-page{font-family:'Dancing Script',cursive;font-size:1rem;color:var(--ink-soft);flex-shrink:0;}
+
+/* ADMIN LOCK */
+.admin-banner{background:var(--sage-pale);border-bottom:1px solid var(--sage-light);padding:8px 20px;text-align:center;font-family:'Caveat',cursive;font-size:0.9rem;color:var(--sage);}
+.admin-banner a{color:var(--sage);cursor:pointer;text-decoration:underline;}
 </style>
 </head>
 <body>
 
-<!-- ═══ HOME ═══ -->
+<!-- HOME -->
 <div id="home" class="screen active">
+  <div id="adminBanner" style="display:none" class="admin-banner">
+    ✦ Admin mode — <a onclick="lockAdmin()">lock</a>
+  </div>
   <div class="book-cover">
     <div class="cover-food-row">🥐 🍓 🧁 🌿 🍋</div>
     <div class="cover-title">Recipes</div>
@@ -753,7 +248,6 @@ body::before{
       <div class="cover-food-item">🍵</div>
     </div>
   </div>
-
   <div class="home-controls">
     <div class="search-wrap">
       <input type="text" id="searchInput" placeholder="Search recipes or ingredients…" oninput="filterRecipes()">
@@ -770,25 +264,23 @@ body::before{
       <button class="cat-btn" onclick="selectCat('other',this)">🌿 Other</button>
     </div>
   </div>
-
   <div class="view-toggle">
     <span class="view-label" id="gridLabel">All recipes</span>
     <div class="view-btns">
-      <button class="view-btn active" onclick="setView('grid',this)" title="Grid view">▦ Cards</button>
-      <button class="view-btn" onclick="openBook()" title="Book view">📖 Book</button>
+      <button class="view-btn active" onclick="setView('grid',this)">▦ Cards</button>
+      <button class="view-btn" onclick="openBook()">📖 Book</button>
     </div>
   </div>
-
   <div class="recipe-grid" id="recipeGrid"></div>
-  <button class="fab" onclick="showAdd()" title="Add recipe">+</button>
+  <button class="fab" id="fabBtn" style="display:none" onclick="showAdd()" title="Add recipe">+</button>
 </div>
 
-<!-- ═══ BOOK VIEW ═══ -->
+<!-- BOOK VIEW -->
 <div id="bookview" class="screen">
   <div class="book-nav">
     <button class="bnav-btn" onclick="show('home')">← Back</button>
     <span class="book-nav-title">My Recipe Book</span>
-    <button class="bnav-btn" onclick="showAdd()">+ Add</button>
+    <button class="bnav-btn" id="bookAddBtn" style="display:none" onclick="showAdd()">+ Add</button>
   </div>
   <div class="book-page-container" id="bookPageContainer"></div>
   <div class="book-pagination">
@@ -798,29 +290,26 @@ body::before{
   </div>
 </div>
 
-<!-- ═══ ADD/EDIT ═══ -->
+<!-- ADD/EDIT -->
 <div id="add" class="screen">
   <div class="screen-nav">
     <button class="nav-back" onclick="show('home');renderGrid();">← Back</button>
     <span class="nav-title" id="addTitle">New Recipe</span>
   </div>
-
   <div class="paste-zone">
     <h3>✨ Paste anything</h3>
     <p>Copy the whole recipe from anywhere — a caption, notes app, website, text. Paste it all and I'll organise it for you.</p>
     <textarea id="pasteInput" placeholder="Paste recipe text here, however messy…"></textarea>
     <button class="parse-btn" id="parseBtn" onclick="parseRecipe()">Organise this for me →</button>
   </div>
-
   <div class="or-divider">or fill in manually</div>
-
   <div class="form-wrap">
     <div class="field">
       <label>Recipe Name</label>
       <input type="text" id="f-name" placeholder="e.g. Brown Butter Banana Bread">
     </div>
     <div class="field">
-      <label>Categories — pick all that apply</label>
+      <label>Categories</label>
       <div class="cat-check-grid">
         <label class="cat-check-item" onclick="toggleCat(this)"><input type="checkbox" value="breakfast"><span class="chk-box">✓</span><span class="chk-label">🍳 Breakfast</span></label>
         <label class="cat-check-item" onclick="toggleCat(this)"><input type="checkbox" value="lunch"><span class="chk-box">✓</span><span class="chk-label">🥗 Lunch</span></label>
@@ -837,22 +326,10 @@ body::before{
       <div class="field"><label>Cook Time</label><input type="text" id="f-cook" placeholder="30 min"></div>
     </div>
     <div class="field"><label>Servings</label><input type="text" id="f-servings" placeholder="e.g. 4"></div>
-    <div class="field">
-      <label>Source Link (optional)</label>
-      <input type="text" id="f-source" placeholder="https://instagram.com/… or any URL">
-    </div>
-    <div class="field">
-      <label>Ingredients — one per line</label>
-      <textarea id="f-ingredients" placeholder="2 cups plain flour&#10;1 tsp baking powder&#10;3 ripe bananas…"></textarea>
-    </div>
-    <div class="field">
-      <label>Instructions — one step per line</label>
-      <textarea id="f-steps" placeholder="Preheat oven to 180°C&#10;Mash bananas in a large bowl…"></textarea>
-    </div>
-    <div class="field">
-      <label>Notes (optional)</label>
-      <textarea id="f-notes" style="min-height:70px" placeholder="Tips, swaps, where you found this…"></textarea>
-    </div>
+    <div class="field"><label>Source Link (optional)</label><input type="text" id="f-source" placeholder="https://…"></div>
+    <div class="field"><label>Ingredients — one per line</label><textarea id="f-ingredients" placeholder="2 cups plain flour&#10;1 tsp baking powder…"></textarea></div>
+    <div class="field"><label>Instructions — one step per line</label><textarea id="f-steps" placeholder="Preheat oven to 180°C&#10;Mash bananas…"></textarea></div>
+    <div class="field"><label>Notes (optional)</label><textarea id="f-notes" style="min-height:70px" placeholder="Tips, swaps, where you found this…"></textarea></div>
     <button class="save-btn" onclick="saveRecipe()">Save to My Book ✦</button>
   </div>
 </div>
@@ -860,32 +337,85 @@ body::before{
 <div class="overlay" id="parsingOverlay">
   <div class="overlay-card">
     <div class="overlay-spinner">🌿</div>
-    <p>Organising your recipe…</p>
+    <p id="overlayMsg">Organising your recipe…</p>
   </div>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
-let recipes = JSON.parse(localStorage.getItem('recipebook_v3')||'[]');
+// ─── CONFIG ───────────────────────────────────────────
+const SUPABASE_URL = 'https://ylkefjpebmkucariiadg.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlsa2VmanBlYm1rdWNhcmlpYWRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4Nzg5MzAsImV4cCI6MjA5NjQ1NDkzMH0.7_F4nqgspjN3PR2lHWC26GTJcDLYUjAmF6AmNWzDFyw';
+const ADMIN_PASSWORD = 'passworD12q'; // choose any password you want
+
+// ─── STATE ────────────────────────────────────────────
+let recipes = [];
 let currentCat = 'all';
 let currentSearch = '';
 let editingId = null;
 let bookPage = 0;
 let bookList = [];
+let isAdmin = false;
 
 const CAT_EMOJI = {breakfast:'🍳',lunch:'🥗',dinner:'🍝',salads:'🥙',snacks:'🧁',desserts:'🍰',drinks:'🍵',other:'🌿'};
+const CAT_ORDER = ['breakfast','lunch','salads','dinner','snacks','desserts','drinks','other'];
 
+// ─── SUPABASE HELPERS ─────────────────────────────────
+const SB_HEADERS = {'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY};
+
+async function dbLoad(){
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/recipes?select=id,data&order=created_at.asc`,{headers:SB_HEADERS});
+  const rows = await res.json();
+  return rows.map(r=>({...r.data, id:r.id}));
+}
+async function dbSave(recipe){
+  await fetch(`${SUPABASE_URL}/rest/v1/recipes`,{
+    method:'POST',
+    headers:{...SB_HEADERS,'Prefer':'resolution=merge-duplicates'},
+    body:JSON.stringify({id:recipe.id, data:recipe})
+  });
+}
+async function dbDelete(id){
+  await fetch(`${SUPABASE_URL}/rest/v1/recipes?id=eq.${id}`,{method:'DELETE',headers:SB_HEADERS});
+}
+
+// ─── ADMIN ────────────────────────────────────────────
+function checkAdmin(){
+  isAdmin = sessionStorage.getItem('rb_admin') === '1';
+  document.getElementById('adminBanner').style.display = isAdmin ? 'block' : 'none';
+  document.getElementById('fabBtn').style.display = isAdmin ? 'flex' : 'none';
+  document.getElementById('bookAddBtn').style.display = isAdmin ? 'inline-block' : 'none';
+}
+function promptAdmin(){
+  const p = prompt('Enter admin password:');
+  if(p === ADMIN_PASSWORD){
+    sessionStorage.setItem('rb_admin','1');
+    checkAdmin();
+    showToast('Admin mode on ✦');
+  } else {
+    showToast('Wrong password');
+  }
+}
+function lockAdmin(){
+  sessionStorage.removeItem('rb_admin');
+  checkAdmin();
+  showToast('Locked');
+}
+
+// ─── UTIL ─────────────────────────────────────────────
 function titleCase(s){return s.replace(/\w\S*/g,t=>t.charAt(0).toUpperCase()+t.slice(1).toLowerCase());}
 function fmtIng(l){l=l.trim().replace(/^[-–•*·▪◦‣⁃]\s*/,'').replace(/^\d+\.\s*/,'');return l?l.charAt(0).toUpperCase()+l.slice(1):'';}
 function fmtStep(l){l=l.trim().replace(/^[-–•*·▪◦‣⁃]\s*/,'').replace(/^\d+[.)]\s*/,'');if(!l)return '';l=l.charAt(0).toUpperCase()+l.slice(1);if(!/[.!?]$/.test(l))l+='.';return l;}
 
-function show(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-}
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 function showHome(){renderGrid();show('home');}
+
+function showLoading(msg){document.getElementById('overlayMsg').textContent=msg||'Loading…';document.getElementById('parsingOverlay').classList.add('show');}
+function hideLoading(){document.getElementById('parsingOverlay').classList.remove('show');}
+
+// ─── FORM ─────────────────────────────────────────────
 function showAdd(prefill){
+  if(!isAdmin){promptAdmin();return;}
   editingId=null;
   document.getElementById('addTitle').textContent='New Recipe';
   clearForm();
@@ -894,12 +424,8 @@ function showAdd(prefill){
   show('add');
 }
 function clearForm(){
-  ['f-name','f-prep','f-cook','f-servings','f-source','f-ingredients','f-steps','f-notes'].forEach(id=>{
-    const el=document.getElementById(id);if(el)el.value='';
-  });
-  document.querySelectorAll('.cat-check-item').forEach(el=>{
-    el.classList.remove('selected');el.querySelector('input').checked=false;
-  });
+  ['f-name','f-prep','f-cook','f-servings','f-source','f-ingredients','f-steps','f-notes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.querySelectorAll('.cat-check-item').forEach(el=>{el.classList.remove('selected');el.querySelector('input').checked=false;});
 }
 function fillForm(r){
   const set=(id,v)=>{const el=document.getElementById(id);if(el&&v)el.value=v;};
@@ -909,40 +435,34 @@ function fillForm(r){
   set('f-steps',(r.steps||[]).join('\n'));
   set('f-notes',r.notes||'');
   const cats=r.categories||(r.category?[r.category]:[]);
-  document.querySelectorAll('.cat-check-item').forEach(el=>{
-    const v=el.querySelector('input').value;
-    if(cats.includes(v)){el.classList.add('selected');el.querySelector('input').checked=true;}
-  });
+  document.querySelectorAll('.cat-check-item').forEach(el=>{const v=el.querySelector('input').value;if(cats.includes(v)){el.classList.add('selected');el.querySelector('input').checked=true;}});
 }
 function toggleCat(el){setTimeout(()=>{el.classList.toggle('selected',el.querySelector('input').checked);},0);}
 
-// ── PARSE ──
+// ─── PARSE ────────────────────────────────────────────
 async function parseRecipe(){
   const raw=document.getElementById('pasteInput').value.trim();
   if(!raw){showToast('Paste some recipe text first');return;}
   const btn=document.getElementById('parseBtn');
   btn.disabled=true;
-  document.getElementById('parsingOverlay').classList.add('show');
+  showLoading('Organising your recipe…');
   const prompt=`You are a recipe parser. Extract a recipe from this raw text and return ONLY a valid JSON object with these exact keys:
 {"name":"Recipe Name In Title Case","prep":"prep time or empty","cook":"cook time or empty","servings":"servings or empty","categories":["array from: breakfast,lunch,dinner,salads,snacks,desserts,drinks,other"],"ingredients":["each clean ingredient, no bullets"],"steps":["each clean step sentence, no numbers"],"notes":"tips or empty","source":"any URL found or empty"}
 Rules: Title Case name. Steps end with punctuation. No markdown. Only JSON.
 Raw text:\n${raw.slice(0,3000)}`;
   try{
-    const res=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompt}]})
-    });
+    const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompt}]})});
     const data=await res.json();
     const text=(data.content?.[0]?.text||'').replace(/```json|```/g,'').trim();
     fillForm(JSON.parse(text));
     document.getElementById('pasteInput').value='';
     showToast('Recipe organised! Check it over, then save ✦');
   }catch(e){showToast('Could not parse — fill in manually');}
-  finally{btn.disabled=false;document.getElementById('parsingOverlay').classList.remove('show');}
+  finally{btn.disabled=false;hideLoading();}
 }
 
-// ── SAVE ──
-function saveRecipe(){
+// ─── SAVE ─────────────────────────────────────────────
+async function saveRecipe(){
   const name=document.getElementById('f-name').value.trim();
   const ings=document.getElementById('f-ingredients').value.trim();
   const steps=document.getElementById('f-steps').value.trim();
@@ -961,14 +481,19 @@ function saveRecipe(){
     notes:document.getElementById('f-notes').value.trim(),
     created:Date.now()
   };
-  if(editingId){const i=recipes.findIndex(x=>x.id===editingId);if(i>-1)recipes[i]=r;}
-  else recipes.unshift(r);
-  localStorage.setItem('recipebook_v3',JSON.stringify(recipes));
-  showToast(editingId?'Updated ✦':`${r.name} saved ✦`);
-  editingId=null;showHome();
+  showLoading('Saving…');
+  try{
+    await dbSave(r);
+    if(editingId){const i=recipes.findIndex(x=>x.id===editingId);if(i>-1)recipes[i]=r;}
+    else recipes.unshift(r);
+    showToast(editingId?'Updated ✦':`${r.name} saved ✦`);
+    editingId=null;
+    hideLoading();
+    showHome();
+  }catch(e){hideLoading();showToast('Could not save — check connection');}
 }
 
-// ── GRID ──
+// ─── GRID ─────────────────────────────────────────────
 function getFiltered(){
   let list=recipes;
   if(currentCat!=='all')list=list.filter(r=>(r.categories||[r.category||'other']).includes(currentCat));
@@ -997,17 +522,11 @@ function renderGrid(){
     </div>`;
   }).join('');
 }
-function selectCat(cat,btn){
-  currentCat=cat;
-  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderGrid();
-}
+function selectCat(cat,btn){currentCat=cat;document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderGrid();}
 function filterRecipes(){currentSearch=document.getElementById('searchInput').value;renderGrid();}
 function setView(v,btn){document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
 
-// ── BOOK VIEW ──
-const CAT_ORDER=['breakfast','lunch','salads','dinner','snacks','desserts','drinks','other'];
+// ─── BOOK VIEW ────────────────────────────────────────
 function sortedBookList(list){
   return [...list].sort((a,b)=>{
     const pa=CAT_ORDER.indexOf((a.categories||['other'])[0]);
@@ -1016,28 +535,22 @@ function sortedBookList(list){
     return (a.name||'').localeCompare(b.name||'');
   });
 }
-// bookList[0] = TOC sentinel, rest = recipes
 function openBook(){
-  const sorted=sortedBookList(recipes);
-  bookList=[{__toc:true},...sorted];
-  bookPage=0;
-  renderBookPage();
-  show('bookview');
+  bookList=[{__toc:true},...sortedBookList(recipes)];
+  bookPage=0;renderBookPage();show('bookview');
 }
 function openRecipePage(id){
-  const sorted=sortedBookList(recipes);
-  bookList=[{__toc:true},...sorted];
+  bookList=[{__toc:true},...sortedBookList(recipes)];
   const idx=bookList.findIndex(r=>r.id===id);
-  bookPage=idx>0?idx:1;
-  renderBookPage();
-  show('bookview');
+  bookPage=idx>0?idx:1;renderBookPage();show('bookview');
 }
 function changePage(dir){
-  bookPage+=dir;
-  bookPage=Math.max(0,Math.min(bookPage,bookList.length-1));
+  bookPage=Math.max(0,Math.min(bookPage+dir,bookList.length-1));
   renderBookPage();
   document.getElementById('bookPageContainer').scrollIntoView({behavior:'smooth'});
 }
+function jumpToPage(n){bookPage=n;renderBookPage();document.getElementById('bookPageContainer').scrollIntoView({behavior:'smooth'});}
+
 function renderBookPage(){
   const container=document.getElementById('bookPageContainer');
   const prev=document.getElementById('prevPageBtn');
@@ -1046,83 +559,56 @@ function renderBookPage(){
   const recipeCount=bookList.filter(x=>!x.__toc).length;
   if(!recipeCount){
     container.innerHTML='<div class="book-empty"><h3>No recipes yet</h3><p>Add your first recipe with the + button</p></div>';
-    ind.textContent=''; prev.disabled=true; next.disabled=true; return;
+    ind.textContent='';prev.disabled=true;next.disabled=true;return;
   }
   prev.disabled=bookPage===0;
   next.disabled=bookPage===bookList.length-1;
-  const pageLabel=bookPage===0?'Contents':`${bookPage} of ${bookList.length-1}`;
-  ind.textContent=pageLabel;
+  ind.textContent=bookPage===0?'Contents':`${bookPage} of ${bookList.length-1}`;
 
-  // TABLE OF CONTENTS PAGE
   if(bookList[bookPage].__toc){
     const recipes_only=bookList.slice(1);
-    let tocHtml='';
-    let lastCat='';
+    let tocHtml='';let lastCat='';
     recipes_only.forEach((r,i)=>{
       const primary=(r.categories||['other'])[0];
-      if(primary!==lastCat){
-        lastCat=primary;
-        tocHtml+=`<div class="toc-cat-heading">${CAT_EMOJI[primary]||'🌿'} ${primary.charAt(0).toUpperCase()+primary.slice(1)}</div>`;
-      }
-      tocHtml+=`<div class="toc-entry" onclick="jumpToPage(${i+1})">
-        <span class="toc-name">${r.name||'Untitled Recipe'}</span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">${i+1}</span>
-      </div>`;
+      if(primary!==lastCat){lastCat=primary;tocHtml+=`<div class="toc-cat-heading">${CAT_EMOJI[primary]||'🌿'} ${primary.charAt(0).toUpperCase()+primary.slice(1)}</div>`;}
+      tocHtml+=`<div class="toc-entry" onclick="jumpToPage(${i+1})"><span class="toc-name">${r.name||'Untitled Recipe'}</span><span class="toc-dots"></span><span class="toc-page">${i+1}</span></div>`;
     });
-    container.innerHTML=`<div class="book-page">
-      <div class="page-top-label">– table of contents –</div>
-      <div class="page-recipe-title" style="font-size:2rem">My Recipe Book</div>
-      <div class="page-divider"><span>✦</span></div>
-      <div class="toc-body">${tocHtml}</div>
-    </div>
-    <div class="page-number">— Contents —</div>`;
+    container.innerHTML=`<div class="book-page"><div class="page-top-label">– table of contents –</div><div class="page-recipe-title" style="font-size:2rem">My Recipe Book</div><div class="page-divider"><span>✦</span></div><div class="toc-body">${tocHtml}</div></div><div class="page-number">— Contents —</div>`;
     return;
   }
+
   const r=bookList[bookPage];
   const cats=r.categories||(r.category?[r.category]:['other']);
-  const primary=cats[0]||'other';
   const meta=[];
   if(r.prep)meta.push('⏱ '+r.prep);
   if(r.cook)meta.push('🔥 '+r.cook);
   if(r.servings)meta.push('🍽 '+r.servings);
-
-  const ingsHtml=(r.ingredients||[]).map((ing,i)=>`<li onclick="this.classList.toggle('checked')"><span class="ing-dash">–</span><span>${ing}</span></li>`).join('');
+  const ingsHtml=(r.ingredients||[]).map(ing=>`<li onclick="this.classList.toggle('checked')"><span class="ing-dash">–</span><span>${ing}</span></li>`).join('');
   const stepsHtml=(r.steps||[]).map((s,i)=>`<li><span class="step-num-hand">${i+1}.</span><span>${s}</span></li>`).join('');
-  const notesHtml=r.notes?`<div class="page-notes">📝 ${r.notes}</div>`:'';
-  const sourceHtml=r.source?`<div class="page-source">🔗 Original: <a href="${r.source}" target="_blank" rel="noopener">${r.source.length>50?r.source.slice(0,50)+'…':r.source}</a></div>`:'';
+  const adminActions=isAdmin?`<div class="page-actions"><button class="page-act-btn" onclick="editRecipe('${r.id}')">✎ Edit</button><button class="page-act-btn danger" onclick="deleteRecipe('${r.id}')">🗑 Delete</button></div>`:'';
 
-  container.innerHTML=`
-  <div class="book-page" id="currentPage">
+  container.innerHTML=`<div class="book-page" id="currentPage">
     <div class="page-top-label">– recipe –</div>
     <div class="page-recipe-title">${r.name}</div>
     <div class="page-recipe-sub">${cats.join(' · ')}</div>
     <div class="page-divider"><span>✦</span></div>
     ${meta.length?`<div class="page-meta-row">${meta.map(m=>`<span>${m}</span>`).join('')}</div>`:''}
     <div class="page-body">
-      <div>
-        <div class="page-section-title">Ingredients</div>
-        <ul class="page-ing-list">${ingsHtml}</ul>
-      </div>
-      <div>
-        <div class="page-section-title">Method</div>
-        <ol class="page-steps-list">${stepsHtml}</ol>
-      </div>
+      <div><div class="page-section-title">Ingredients</div><ul class="page-ing-list">${ingsHtml}</ul></div>
+      <div><div class="page-section-title">Method</div><ol class="page-steps-list">${stepsHtml}</ol></div>
     </div>
-    ${notesHtml}
-    ${sourceHtml}
+    ${r.notes?`<div class="page-notes">📝 ${r.notes}</div>`:''}
+    ${r.source?`<div class="page-source">🔗 Original: <a href="${r.source}" target="_blank" rel="noopener">${r.source.length>50?r.source.slice(0,50)+'…':r.source}</a></div>`:''}
     <button class="page-macros-btn" id="macrosBtn_${r.id}" onclick="estimateMacros('${r.id}')">✦ Estimate Nutrition & Calories</button>
     <div id="macrosResult_${r.id}"></div>
-    <div class="page-actions">
-      <button class="page-act-btn" onclick="editRecipe('${r.id}')">✎ Edit</button>
-      <button class="page-act-btn danger" onclick="deleteRecipe('${r.id}')">🗑 Delete</button>
-    </div>
+    ${adminActions}
   </div>
   <div class="page-number">— ${bookPage} —</div>`;
 }
-function jumpToPage(n){bookPage=n;renderBookPage();document.getElementById('bookPageContainer').scrollIntoView({behavior:'smooth'});}
 
+// ─── EDIT / DELETE ────────────────────────────────────
 function editRecipe(id){
+  if(!isAdmin)return;
   const r=recipes.find(x=>x.id===id);if(!r)return;
   editingId=id;
   document.getElementById('addTitle').textContent='Edit Recipe';
@@ -1130,20 +616,23 @@ function editRecipe(id){
   document.getElementById('pasteInput').value='';
   show('add');
 }
-function deleteRecipe(id){
+async function deleteRecipe(id){
+  if(!isAdmin)return;
   const r=recipes.find(x=>x.id===id);
   if(!confirm(`Delete "${r?.name}"?`))return;
-  recipes=recipes.filter(x=>x.id!==id);
-  localStorage.setItem('recipebook_v3',JSON.stringify(recipes));
-  const sorted=sortedBookList(recipes);
-  bookList=[{__toc:true},...sorted];
-  if(bookPage>=bookList.length)bookPage=Math.max(0,bookList.length-1);
-  if(recipes.length===0){showHome();return;}
-  renderBookPage();
-  showToast('Deleted');
+  showLoading('Deleting…');
+  try{
+    await dbDelete(id);
+    recipes=recipes.filter(x=>x.id!==id);
+    bookList=[{__toc:true},...sortedBookList(recipes)];
+    if(bookPage>=bookList.length)bookPage=Math.max(0,bookList.length-1);
+    hideLoading();
+    if(recipes.length===0){showHome();return;}
+    renderBookPage();showToast('Deleted');
+  }catch(e){hideLoading();showToast('Could not delete — check connection');}
 }
 
-// ── MACROS ──
+// ─── MACROS ───────────────────────────────────────────
 async function estimateMacros(id){
   const r=recipes.find(x=>x.id===id);if(!r)return;
   const btn=document.getElementById(`macrosBtn_${id}`);
@@ -1151,31 +640,41 @@ async function estimateMacros(id){
   if(btn)btn.style.display='none';
   if(result)result.innerHTML='<p style="text-align:center;font-family:Caveat,cursive;color:var(--ink-faint);padding:8px">Estimating…</p>';
   try{
-    const res=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:100,messages:[{role:"user",content:`Estimate macros per serving for "${r.name}": ${r.ingredients.join(', ')}. Servings: ${r.servings||1}. Reply ONLY with JSON: {"calories":0,"protein_g":0,"carbs_g":0,"fat_g":0}`}]})
-    });
+    const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:100,messages:[{role:"user",content:`Estimate macros per serving for "${r.name}": ${r.ingredients.join(', ')}. Servings: ${r.servings||1}. Reply ONLY with JSON: {"calories":0,"protein_g":0,"carbs_g":0,"fat_g":0}`}]})});
     const data=await res.json();
     const m=JSON.parse((data.content?.[0]?.text||'').replace(/```json|```/g,'').trim());
-    if(result)result.innerHTML=`<div class="macros-row">
-      <div class="macro-box"><span class="mv">${m.calories}</span><span class="ml">Calories</span></div>
-      <div class="macro-box"><span class="mv">${m.protein_g}g</span><span class="ml">Protein</span></div>
-      <div class="macro-box"><span class="mv">${m.carbs_g}g</span><span class="ml">Carbs</span></div>
-      <div class="macro-box"><span class="mv">${m.fat_g}g</span><span class="ml">Fat</span></div>
-    </div><p class="macro-note">AI estimate · not exact nutritional data</p>`;
+    if(result)result.innerHTML=`<div class="macros-row"><div class="macro-box"><span class="mv">${m.calories}</span><span class="ml">Calories</span></div><div class="macro-box"><span class="mv">${m.protein_g}g</span><span class="ml">Protein</span></div><div class="macro-box"><span class="mv">${m.carbs_g}g</span><span class="ml">Carbs</span></div><div class="macro-box"><span class="mv">${m.fat_g}g</span><span class="ml">Fat</span></div></div><p class="macro-note">AI estimate · not exact nutritional data</p>`;
   }catch(e){
     if(result)result.innerHTML='<p style="text-align:center;color:#A05050;font-size:0.85rem">Could not estimate — try again</p>';
     if(btn)btn.style.display='block';
   }
 }
 
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2800);
+// ─── TOAST ────────────────────────────────────────────
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+
+// ─── INIT ─────────────────────────────────────────────
+async function init(){
+  checkAdmin();
+  showLoading('Loading your recipes…');
+  try{
+    recipes = await dbLoad();
+  }catch(e){
+    showToast('Could not load recipes — check connection');
+  }
+  hideLoading();
+  renderGrid();
+
+  // secret: tap the cover title 5 times to enter admin mode
+  let taps=0;let tapTimer;
+  document.querySelector('.cover-title').addEventListener('click',()=>{
+    taps++;clearTimeout(tapTimer);
+    tapTimer=setTimeout(()=>taps=0,1500);
+    if(taps>=5){taps=0;promptAdmin();}
+  });
 }
 
-renderGrid();
+init();
 </script>
 </body>
 </html>
