@@ -188,6 +188,7 @@ body::before{
 
 /* CATEGORY COLORS */
 .cc-breakfast{background:#FEF4D8;color:#9A7818;}.cc-lunch{background:#E4F0E0;color:#3A7030;}.cc-dinner{background:#EAE4F4;color:#5A4090;}.cc-snacks{background:#FEE8DC;color:#9A5020;}.cc-salads{background:#E0F4D8;color:#3A7820;}.cc-desserts{background:#FAE0EC;color:#983060;}.cc-drinks{background:#DCF0F6;color:#1A6888;}.cc-other{background:var(--linen-dark);color:var(--ink-soft);}
+.cc-homemade{background:#E8F4E8;color:#3A6B3A;}
 
 /* TOAST & OVERLAY */
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--ink);color:var(--paper);padding:9px 22px;border-radius:40px;font-family:'EB Garamond',serif;font-size:0.95rem;opacity:0;transition:all 0.28s;pointer-events:none;z-index:400;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.25);}
@@ -262,6 +263,7 @@ body::before{
       <button class="cat-btn" onclick="selectCat('desserts',this)">🍰 Desserts</button>
       <button class="cat-btn" onclick="selectCat('drinks',this)">🍵 Drinks</button>
       <button class="cat-btn" onclick="selectCat('other',this)">🌿 Other</button>
+      <button class="cat-btn" onclick="selectCat('homemade',this)">🏡 Homemade</button>
     </div>
   </div>
   <div class="view-toggle">
@@ -319,6 +321,7 @@ body::before{
         <label class="cat-check-item" onclick="toggleCat(this)"><input type="checkbox" value="desserts"><span class="chk-box">✓</span><span class="chk-label">🍰 Desserts</span></label>
         <label class="cat-check-item" onclick="toggleCat(this)"><input type="checkbox" value="drinks"><span class="chk-box">✓</span><span class="chk-label">🍵 Drinks</span></label>
         <label class="cat-check-item" onclick="toggleCat(this)"><input type="checkbox" value="other"><span class="chk-box">✓</span><span class="chk-label">🌿 Other</span></label>
+        <label class="cat-check-item" onclick="toggleCat(this)"><input type="checkbox" value="homemade"><span class="chk-box">✓</span><span class="chk-label">🏡 Homemade</span></label>
       </div>
     </div>
     <div class="field-row">
@@ -357,8 +360,8 @@ let bookPage = 0;
 let bookList = [];
 let isAdmin = false;
 
-const CAT_EMOJI = {breakfast:'🍳',lunch:'🥗',dinner:'🍝',salads:'🥙',snacks:'🧁',desserts:'🍰',drinks:'🍵',other:'🌿'};
-const CAT_ORDER = ['breakfast','lunch','salads','dinner','snacks','desserts','drinks','other'];
+const CAT_EMOJI = {breakfast:'🍳',lunch:'🥗',dinner:'🍝',salads:'🥙',snacks:'🧁',desserts:'🍰',drinks:'🍵',other:'🌿',homemade:'🏡'};
+const CAT_ORDER = ['breakfast','lunch','salads','dinner','snacks','desserts','drinks','other','homemade'];
 
 // ─── SUPABASE HELPERS ─────────────────────────────────
 const SB_HEADERS = {'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY};
